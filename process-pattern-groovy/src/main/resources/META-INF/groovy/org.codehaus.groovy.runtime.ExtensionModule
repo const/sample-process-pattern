@@ -1,0 +1,3 @@
+moduleName = builder-extension
+moduleVersion = 1.0
+extensionClasses = samples.BaseBuilderExtensions, samples.SecurityUtil
