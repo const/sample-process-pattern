@@ -5,6 +5,7 @@ import samples.Base.BaseBuilder
 import samples.SecurityUtil
 import samples.Session
 
+
 class PersonServiceKotlin {
     fun <B : BaseBuilder<*, *>?, T> B.process(ext: (b: B) -> T): T = ext(this)
 
@@ -25,6 +26,15 @@ class PersonServiceKotlin {
         return Person.builder()
                 .name("test")
                 .process { SecurityUtil.supplySecurityInfo(it, session) }
+                .age(42)
+                .occupation("test")
+                .build()
+    }
+
+    fun getReuseLet(session: Session?): Person {
+        return Person.builder()
+                .name("test")
+                .let { b -> SecurityUtil.supplySecurityInfo(b, session) }
                 .age(42)
                 .occupation("test")
                 .build()
